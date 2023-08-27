@@ -31,6 +31,7 @@ export const Back = styled.span`
 
   width: 100%;
   margin: 0.625rem;
+  padding-left: 1rem;
 
   font-family: sans-serif;
   font-weight: bold;
@@ -117,3 +118,14 @@ export const Description = styled.p`
   font-family: sans-serif;
   text-align: center;
 `;
+
+export const Severity = styled.p`
+  color: ${(props) => props.color || 'black'};
+  font-size: 1.25rem;
+  font-weight: bold;
+  font-family: sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+`;
+

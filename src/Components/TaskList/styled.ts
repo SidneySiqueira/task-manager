@@ -2,7 +2,7 @@ import { Button, Grid } from "@mui/material";
 import styled from "styled-components";
 
 interface Props {
-  concluded?: boolean
+  concluded?: boolean;
 }
 
 export const Container = styled.div`
@@ -41,13 +41,23 @@ export const ButtonBox = styled.div`
   }
 `;
 
-export const AddTask = styled(Button)`
- background-color: #fff !important;
- color: #000 !important;
+export const filterClear = styled(Button)`
+  background-color: transparent !important;
+  color: #fff !important;
+  margin-right: 1rem !important;
 
- &:hover {
+  &:hover {
+    background-color: #ad1e1e !important;
+  }
+`;
+
+export const AddTask = styled(Button)`
+  background-color: #fff !important;
+  color: #000 !important;
+
+  &:hover {
     background-color: #b4b416 !important;
- }
+  }
 `;
 
 export const Content = styled.div`
@@ -58,10 +68,10 @@ export const Lines = styled(Grid)<Props>`
   width: 100%;
   margin: 1rem 0;
 
-  background-color: ${props => props.concluded ? 'gray' : '#7878cc'};
+  background-color: ${(props) => (props.concluded ? "gray" : "#7878cc")};
   border: 0.125rem solid #fff;
   border-radius: 0.625rem;
-  opacity: ${props => props.concluded ? '30%' : ''};
+  opacity: ${(props) => (props.concluded ? "30%" : "")};
 
   @media (min-width: 768px) {
     margin: 1rem;
@@ -76,4 +86,9 @@ export const Title = styled(Grid)`
   font-weight: bold;
 `;
 
-
+export const Empty = styled.h1`
+  color: #fff;
+  margin-top: 10%;
+  font-size: 1.563rem;
+  font-weight: bold;
+`;

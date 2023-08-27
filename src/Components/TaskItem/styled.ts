@@ -44,3 +44,11 @@ export const Conclude = styled.button`
 
   cursor: pointer;
 `;
+
+export const Severity = styled.div`
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  border-radius: 50%;
+  background-color: ${(props) => props.color || 'black'};;
+`

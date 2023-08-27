@@ -10,11 +10,12 @@ import TaskForm from '../TaskForm';
 import Confirm from '../Confirm';
 
 import { RootState } from '../../redux/store';
-import { TasksProps } from '../../utils/type';
+import { OptionsProps, TasksProps } from '../../utils/type';
 import { fetchApi } from '../../redux/apiSlice';
 import { setSelectedTaskSlice } from '../../redux/selectedTaskSlice';
 import TaskItem from '../TaskItem';
-import CategoryFilter from '../CategoryFilter';
+import { options } from '../../utils/options';
+import Dropdown from '../Dropdown';
 
 interface FormData {
   id: string;
@@ -35,19 +36,19 @@ const initialFormData: FormData = {
 export default function TaskList() {
   const [showModal, setShowModal] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [newTasks, setNewTasks] = useState<TasksProps[]>([])
-  const isMobile = useMediaQuery('(max-width:758px)');
+  const [loading, setLoading] = useState(true);
+  const [newTasks, setNewTasks] = useState<TasksProps[]>([]);
+  const [shouldExecuteEffect, setShouldExecuteEffect] = useState(false);
+  const isMobile = useMediaQuery('(max-width:758px)');  
 
   const { tasks } = useSelector((state: RootState) => state.api);
-  const tasksArray = tasks ? Object.values(tasks) : [];
+  const tasksArray = tasks ? Object.values(tasks) : [];    
 
-  const newTasksArray = newTasks.length > 0 ? newTasks : tasksArray
+  const newTasksArray = shouldExecuteEffect ? newTasks : tasksArray  
 
   const dispatch: ThunkDispatch<RootState, undefined, Action<any>> = useDispatch();
 
   useEffect(() => {
-      setLoading(true);
     dispatch(fetchApi())
       .then(() => setLoading(false))
       .catch(() => setLoading(false));
@@ -58,23 +59,35 @@ export default function TaskList() {
     setShowModal(true);
   };
 
+  const filterSeverity = (option: OptionsProps) => {
+    const filteredTasks = tasksArray.filter((task: TasksProps) => task.severity === option.value);
+    setShouldExecuteEffect(true)
+    setNewTasks(filteredTasks);
+  };
+
+  const clearFilter = () => {
+    window.location.reload()
+  };
+
   return (
     <S.Container>
       <S.ButtonBox>
-        <CategoryFilter newTasks={newTasks} setNewTasks={setNewTasks} tasksArray={tasksArray}/>
+        <Dropdown options={options} text={'Severidade'} onChange={filterSeverity} />
+        <S.filterClear onClick={clearFilter}>Limpar Filtro</S.filterClear>
         <S.AddTask onClick={addDescription}>Adicionar Descrição</S.AddTask>
       </S.ButtonBox>
       <S.Table>
         <S.Content>
           <S.Lines container>
             <Grid item xs={10} style={{ display: 'flex' }}>
-              <S.Title item xs={6}>
+              <S.Title item xs={4.5}>
                 Descrição
               </S.Title>
-              {!isMobile &&
+              {!isMobile && (
                 <S.Title item xs={4}>
                   Data de Criação
-                </S.Title>}
+                </S.Title>
+              )}
               <S.Title item xs={2}>
                 Status
               </S.Title>
@@ -84,11 +97,17 @@ export default function TaskList() {
         {loading ? (
           <CircularProgress />
         ) : (
-          <S.Content>
-            {newTasksArray.map((task, index) => (
-              <TaskItem task={task} index={index} setIsConfirm={setIsConfirm} />
-            ))}
-          </S.Content>
+          <>
+            {newTasksArray.length > 0 ? (
+              <S.Content>
+                {newTasksArray.map((task) => (
+                  <TaskItem key={task.id} task={task} setIsConfirm={setIsConfirm} />
+                ))}
+              </S.Content>
+            ) : (
+              <S.Empty>Não existe tarefas</S.Empty>
+            )}
+          </>
         )}
       </S.Table>
       {showModal && <TaskForm setShowModal={setShowModal} setLoading={setLoading} />}

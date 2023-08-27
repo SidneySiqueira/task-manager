@@ -16,7 +16,7 @@ export default function Confirm({setIsConfirm, setLoading}:ConfirmProps) {
 
     const { selectedTask } : TaskStateProps = useSelector((state: RootState) => state.selectedTask);
 
-    const dispatch: ThunkDispatch<RootState, undefined, Action<any>> = useDispatch();
+    const dispatch: ThunkDispatch<RootState, undefined, Action<any>> = useDispatch();    
     
     const handlePatch = async (item: TasksProps) => {
         const updatedTask = { ...selectedTask, concluded: true };
@@ -42,7 +42,7 @@ export default function Confirm({setIsConfirm, setLoading}:ConfirmProps) {
     }
 
     return (
-        <S.Wrapper>
+        <S.Wrapper data-testid='modal-confirm'>
             <S.Container>
                 <S.Title>A tarefa vai alterar para concluida.</S.Title>
                 <S.Title>Tem certeza?</S.Title>

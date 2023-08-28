@@ -44,6 +44,8 @@ export default function TaskList() {
   const { tasks } = useSelector((state: RootState) => state.api);
   const tasksArray = tasks ? Object.values(tasks) : [];    
 
+  console.log("tasksArray", tasksArray);
+  
   const newTasksArray = shouldExecuteEffect ? newTasks : tasksArray  
 
   const dispatch: ThunkDispatch<RootState, undefined, Action<any>> = useDispatch();

@@ -40,37 +40,21 @@ const TaskForm = ({ setShowModal, setLoading }: TaskFormProps) => {
         setFormErrors({});
     };
 
-    // const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {        
-    //     const { name, value } = event.target;
-    //     setFormData({ ...formData, [name]: value });
-    // };
-
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     };
 
-    // const handleDropdownChange = (options: OptionsProps) => {        
-    //     setFormData({ ...formData, ['severity']: options.value });
-    // };
-
     const handleDropdownChange = (selectedOption: OptionsProps) => {
         setFormData((prevFormData) => ({ ...prevFormData, severity: selectedOption.value }));
     };
 
-    // const handlePost = (array: TasksProps) => {        
-    //     dispatch(AddApi(array));
-    //     setShowModal(false)
-    //     setTimeout(() => {
-    //         window.location.reload()
-    //     }, 500);
-    // };
-
-    const handlePost = async (array: TasksProps) => {
+    const handlePost = (array: TasksProps) => {        
         dispatch(AddApi(array));
-        setShowModal(false);
-        await new Promise((resolve) => setTimeout(resolve, 500));
-        window.location.reload();
+        setShowModal(false)
+        setTimeout(() => {
+            window.location.reload()
+        }, 500);
     };
 
     const handlePatch = (id: string, patchData: TasksProps) => {
@@ -79,33 +63,6 @@ const TaskForm = ({ setShowModal, setLoading }: TaskFormProps) => {
             navigate('/')
         }, 500);
     };
-
-    // const handleAdd = async () => {
-    //     if (setLoading) {
-    //         setLoading(true)
-    //     }
-    //     if (!formData) {
-    //         return;
-    //     }
-    //     const tasksArray = tasks ? Object.entries(tasks) : [];
-    //     const existingtask = tasksArray?.find(([_, task]) => {
-    //         const { id } = task;
-    //         return (
-    //             id === formData.id
-    //         );
-    //     });
-    //     if (existingtask) {
-    //         await handlePatch(existingtask[0], formData);
-    //     } else {
-    //         const newFormData = { ...formData, id: uuidv4() };
-    //         await handlePost(newFormData);
-    //     }
-
-    //     setShowModal(false);
-    //     setTimeout(() => {
-    //         window.location.reload();
-    //     }, 500);
-    // }
 
     const handleAdd = async () => {
         if (setLoading) {
@@ -147,6 +104,9 @@ const TaskForm = ({ setShowModal, setLoading }: TaskFormProps) => {
         }
     };
 
+    console.log("formData.severity", formData.severity);
+    
+
     return (
         <S.Wrapper>
             <S.Container>
@@ -168,7 +128,7 @@ const TaskForm = ({ setShowModal, setLoading }: TaskFormProps) => {
                     <S.FormGroup>
                         <S.Atribute>Severidade da Tarefa</S.Atribute>
                         <Dropdown options={options} text={formData.severity && formData.severity.length > 0 ? formData.severity : "Selecione uma opção"} onChange={handleDropdownChange}/>
-                        {formErrors.severity && <span className="error" style={{color: 'red'}}>{formErrors.severity}</span>}
+                        {formData.severity === undefined && formErrors.severity && <span className="error" style={{color: 'red'}}>{formErrors.severity}</span>}
                     </S.FormGroup>
                     <S.FormGroup>
                         <S.Add

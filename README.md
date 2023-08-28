@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+Gerenciador de Tarefas
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este é um projeto de um Gerenciador de Tarefas, desenvolvido usando tecnologias como React, Redux, Material-UI e mais. Ele permite criar, editar, e excluir tarefas, além de visualizar uma lista de tarefas existentes.
 
-## Available Scripts
+Requisitos do Sistema
+Node.js (versão 14 ou superior)
+npm (geralmente instalado junto com o Node.js)
 
-In the project directory, you can run:
+Instalação
 
-### `npm start`
+1-Clone este repositório para o seu sistema local ou faça o download como um arquivo ZIP.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2-Instale as dependências usando o npm:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+npm install
 
-### `npm test`
+Iniciando o Projeto
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Após ter instalado as dependências, você pode iniciar o servidor de desenvolvimento para visualizar o projeto no navegador.
 
-### `npm run build`
+npm start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Isso irá iniciar o servidor de desenvolvimento e abrir automaticamente o projeto no seu navegador padrão. Se isso não acontecer, você pode acessar o projeto em http://localhost:3000.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Comandos Disponíveis
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+npm start: Inicia o servidor de desenvolvimento.
+npm run build: Cria uma versão otimizada do projeto para produção.
 
-### `npm run eject`
+Tecnologias Utilizadas
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+React: Biblioteca JavaScript para a construção de interfaces de usuário.
+Redux: Gerenciamento de estado previsível para aplicações React.
+Material-UI: Biblioteca de componentes de interface com usuário.
+Styled Components: Biblioteca para escrever estilos com JavaScript.
+Axios: Biblioteca para realizar requisições HTTP.
+UUID: Biblioteca para a geração de identificadores únicos.
+TypeScript: Superset do JavaScript que adiciona tipagem estática.
+React Router DOM: Gerenciamento de rotas para aplicações React.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Licença
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Este projeto está licenciado sob a Licença XYZ.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Este README fornece um guia básico para iniciar o projeto do Gerenciador de Tarefas. Certifique-se de atualizar as informações, adicionar detalhes específicos do seu projeto e incluir informações sobre como implantar o projeto em produção, políticas de contribuição e licenciamento conforme necessário.
